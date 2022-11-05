@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>Arithmetic v1</title>
+		<link rel="stylesheet" type="text/css" href="styles.css">
+		<!-- This includes the jquery javascript library to our hmtl -->
+		<script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+		<!-- This includes our own js code -->
+		<script src="arithmetic-client.js"></script>
+	</head>
+	<body>
+	<!-- The <div> tag defines a division or a section in 
+	an HTML document.
+	The <div> tag is used as a container for HTML elements 
+	which is then styled with CSS or manipulated with JavaScript. -->
+		<div>
+			<h1>Welcome to Social Arithmetic</h1>
+			<h2>This is your challenge for today:</h2>
+			<h1>
+			<!-- The <span> tag is an inline container used to mark up 
+			a part of a text, or a part of a document. -->
+			<!-- span標簽是行内容器，用來標記文本内容的一部分，或者文檔的一部分 -->
+			<!-- The <span> tag is easily styled by CSS or manipulated 
+			with js using the class or id attribute. -->
+			<!-- la siguiente parte es para mostrar una expresion de aritmética -->
+				
+				<span class="multiplication-a"></span>  
+				<select id="arithmetic">
+					<option value="addition">+</option>
+					<option value="subtraction">-</option>
+					<option value="multiplication">×</option>
+					<option value="division">÷</option>
+				</select>
+				<span class="multiplication-b"></span> =
+			</h1>
+			<!-- The <p> tag defines a paragraph. -->
+			<p>
+				<form id="attempt-form">
+				<!-- <br>: The Line Break element. The <br> element produces 
+				a line break in text, useful for writing a poem or an 
+				address, where the division of lines is significant. 
+				換行標簽-->
+					Result= <input type="text" name="resultattempt"><br><br>
+					Your alias: <input type="text" name="user-alias"><br><br>
+					<input type="submit" value="Check">
+				</form>
+			</p>
+			A three-tier monolith Spring Boot appliCation
+			una aplicación con tres capas de estilo de monolito con springboot
+			<h2>
+				<span class="debug-message">debug message</span>
+			</h2>
+			<h2>
+				<span class="result-message">result message</span>
+			</h2>
+			<button id="abc" type = "button">show</button>
+			<button id="efg" type = "button">hide</button>
+		</div>
+		<!-- When the document is ready, excute .... -->
+		<script type="text/javascript">
+			$(document).ready(function() {
+				$("#abc").click(function() {
+					$("h1").show();
+				});
+				$("#efg").click(function() {
+					$("h1").hide();
+				});
+			});
+		</script>
+	</body>
+</html>

@@ -1,0 +1,30 @@
+Problem: can not visit the index.html page when it locates 
+under the resource folder directly
+http://localhost:8080/index.html
+Solution: one has to move the index.html below the static folder
+
+Problem: in the index.html file, when holding the control key, 
+and moving the mouse pointer to the following two source file links, 
+and try to open them, it will show a message "Resource '/arithmetic/src/main/resources/static/multiplication-client.js' does not exist."
+it seems that you have to put the html and its related css, js file 
+under the same folder.
+<script
+	src="https://ajax.googleapis.com/ajax/libs/jquery/3.1.1/jquery.min.js"></script>
+<script src="multiplication-client.js"></script>
+
+Problem: Add parameters to a url link using jquery
+solution:
+var clientData = { operator: operator};
+url: 'http://localhost:8080/arithmetic/random?' + $.param(clientData),
+
+Problem: Can not recognize <mongo:mongo-client /> with no bound error
+Solution: Add corresponding metadata definition for mongo related tags
+xmlns:mongo="http://www.springframework.org/schema/data/mongo"
+	xsi:schemaLocation="http://www.springframework.org/schema/context
+          http://www.springframework.org/schema/context/spring-context-3.0.xsd
+          http://www.springframework.org/schema/data/mongo
+          http://www.springframework.org/schema/data/mongo/spring-mongo-1.0.xsd
+
+
+
+
