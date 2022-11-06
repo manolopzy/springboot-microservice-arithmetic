@@ -1,7 +1,10 @@
 package com.worldexplorer.arithmetic.entity;
 
-import lombok.EqualsAndHashCode;
+import org.springframework.data.annotation.Transient;
+import org.springframework.data.mongodb.core.mapping.Document;
+
 import lombok.Getter;
+import lombok.Setter;
 
 /**
  * Alt+Shift+S 
@@ -20,13 +23,15 @@ import lombok.Getter;
  *
  */
 @Getter
-//Generates implementations for the {@code equals} and {@code hashCode} methods inherited by all objects, based on relevant fields.
-@EqualsAndHashCode
+@Setter
+@Document("arithmeticUsers")
 public final class Arithmetic {
 
+	private String id;
 	private int factorA;
 	private  int factorB;
 	private String operator;
+	@Transient
 	private  int result;
 	public Arithmetic() {
 	}

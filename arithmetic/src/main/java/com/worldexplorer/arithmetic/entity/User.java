@@ -1,19 +1,17 @@
 package com.worldexplorer.arithmetic.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import org.springframework.data.mongodb.core.mapping.Document;
 
-@RequiredArgsConstructor
+import lombok.Getter;
+import lombok.NonNull;
+import lombok.Setter;
+
 @Getter
-@ToString
-@EqualsAndHashCode
+@Setter
+@Document("arithmeticUsers")
 public final class User {
+	private String id;
+	@NonNull
+	private String alias;
 	
-	private final String alias;
-	// Empty constructor for JSON (de)serialization
-	public User() {
-		alias = null;
-	}
 }

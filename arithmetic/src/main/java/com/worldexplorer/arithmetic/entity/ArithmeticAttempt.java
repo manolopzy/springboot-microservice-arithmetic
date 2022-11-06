@@ -12,13 +12,13 @@ import lombok.ToString;
  * @author tanku
  *
  */
-@Document(collection = "arithmetic_attempts")
+@Document(collection = "arithmeticAttempts")
 @Getter
 @Setter
 @ToString
 @EqualsAndHashCode
 public class ArithmeticAttempt {
-
+	private String id;
 	private User user;
 	private Arithmetic arithmetic;
 	//this is the user's calculation result, could be either wrong or right
@@ -36,4 +36,9 @@ public class ArithmeticAttempt {
 		this.arithmetic = arithmetic;
 		this.resultAttempt = resultAttempt;
 	}
+
+	public boolean isCorrect() {
+		return arithmetic.getResult() == resultAttempt;
+	}
+
 }
