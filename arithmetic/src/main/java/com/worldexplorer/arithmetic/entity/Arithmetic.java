@@ -1,6 +1,5 @@
 package com.worldexplorer.arithmetic.entity;
 
-import org.springframework.data.annotation.Transient;
 import org.springframework.data.mongodb.core.mapping.Document;
 
 import lombok.Getter;
@@ -31,41 +30,57 @@ public final class Arithmetic {
 	private int factorA;
 	private  int factorB;
 	private String operator;
-	@Transient
-	private  int result;
 	public Arithmetic() {
 	}
 	public Arithmetic(int factorA, int factorB, String operator) {
 		this.operator = operator;
 		this.factorA = factorA;
 		this.factorB = factorB;
+		
+	}
+	
+	@Override
+	public String toString() {
+		return "arithmetic [factorA=" + factorA + ", operator=" +  operator + ", factorB=" + factorB  + "]";
+	}
+	
+	public boolean isCorrect(int attemptResult) {
 		switch (operator) {
 		case "+": {
-			this.result = factorA + factorB;
-			break;
+			if(attemptResult == factorA + factorB) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		case "-": {
-			this.result = factorA - factorB;
-			break;
+			if(attemptResult == factorA - factorB) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		case "×": {
-			this.result = factorA * factorB;
-			break;
+			if(attemptResult == factorA * factorB) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		case "÷": {
-			this.result = factorA / factorB;
-			break;
+			if(attemptResult == factorA / factorB) {
+				return true;
+			}
+			else {
+				return false;
+			}
 		}
 		default:
 			throw new IllegalArgumentException("Unexpected value: " + operator);
 		}
 	}
-	
-	@Override
-	public String toString() {
-		return "Multiplication [factorA=" + factorA + ", factorB=" + factorB + ", result=" + result + "]";
-	}
-	
-	
 	
 }

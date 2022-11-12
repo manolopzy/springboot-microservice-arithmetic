@@ -24,8 +24,8 @@ public class RabbitMQConfig {
 	}
 
 	/**
-	 * RabbitTemplate is used for sending and receiving messages to 
-	 * and from RabbitMQ 
+	 * RabbitTemplate is used for sending messages to RabbitMQ for 
+	 * subscribers to consume
 	 * @param connectionFactory
 	 * @return
 	 */

@@ -1,5 +1,6 @@
 package com.worldexplorer.arithmetic.service.impl;
 
+import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -21,7 +22,7 @@ import lombok.extern.slf4j.Slf4j;
 public class ArithmeticServiceImpl implements ArithmeticService {
 	
 	@Autowired
-	private ArithmeticAttemptRepository repository;
+	private ArithmeticAttemptRepository arithmeticAttemptRepository;
 	@Autowired
 	private UserRepository userRepository;
 	@Autowired
@@ -55,18 +56,33 @@ public class ArithmeticServiceImpl implements ArithmeticService {
 		// Check if the user already exists for that alias
 		Optional<User> dbUser = userRepository.findByAlias(attempt.getUser().getAlias());
 		User user = null;
-		if(dbUser.get() == null) {
+		if(dbUser.isEmpty()) {
 			user = userRepository.save(attempt.getUser());
 		}
+		else {
+			user = dbUser.get();
+		}
 		// Check if the attempt is correct
-		boolean isCorrect = attempt.isCorrect();
+		boolean isCorrect = attempt.getArithmetic().isCorrect(attempt.getResultAttempt());
 		
-		ArithmeticAttempt checkedAttempt = new ArithmeticAttempt(user ,attempt.getArithmetic(), attempt.getResultAttempt());
+		ArithmeticAttempt checkedAttempt = new ArithmeticAttempt(user ,attempt.getArithmetic(), attempt.getResultAttempt(), isCorrect);
 		
-		checkedAttempt = repository.save(checkedAttempt);
+		checkedAttempt = arithmeticAttemptRepository.save(checkedAttempt);
 		log.info("checkedAttempt = " + checkedAttempt.toString());
-		eventDispatcher.send(new ArithmeticSolvedEvent(checkedAttempt.getId(), checkedAttempt.getUser().getId(), checkedAttempt.isCorrect()));
+		eventDispatcher.send(new ArithmeticSolvedEvent(checkedAttempt.getId(), user.getId(), checkedAttempt.isCorrect()));
 		
 		return isCorrect;
+	}
+
+	@Override
+	public ArithmeticAttempt getArithmeticAttemptById(String id) {
+		Optional<ArithmeticAttempt> result = arithmeticAttemptRepository.findById(id);
+		return result.isEmpty() ? null : result.get();
+	}
+
+	@Override
+	public List<ArithmeticAttempt> getStatsForUser(String alias) {
+		// TODO Auto-generated method stub
+		return null;
 	}
 }

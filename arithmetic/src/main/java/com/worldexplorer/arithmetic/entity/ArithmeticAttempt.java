@@ -23,22 +23,19 @@ public class ArithmeticAttempt {
 	private Arithmetic arithmetic;
 	//this is the user's calculation result, could be either wrong or right
 	private int resultAttempt;
-
+	private boolean correct;
 	// Empty constructor for JSON (de)serialization
 	ArithmeticAttempt() {
 		user = null;
 		arithmetic = null;
 		resultAttempt = -1;
+		correct = false;
 	}
 
-	public ArithmeticAttempt(User user, Arithmetic arithmetic, int resultAttempt) {
+	public ArithmeticAttempt(User user, Arithmetic arithmetic, int resultAttempt, boolean correct) {
 		this.user = user;
 		this.arithmetic = arithmetic;
 		this.resultAttempt = resultAttempt;
+		this.correct = correct;
 	}
-
-	public boolean isCorrect() {
-		return arithmetic.getResult() == resultAttempt;
-	}
-
 }

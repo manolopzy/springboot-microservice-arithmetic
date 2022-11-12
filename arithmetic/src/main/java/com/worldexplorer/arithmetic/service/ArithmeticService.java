@@ -1,5 +1,7 @@
 package com.worldexplorer.arithmetic.service;
 
+import java.util.List;
+
 import com.worldexplorer.arithmetic.entity.Arithmetic;
 import com.worldexplorer.arithmetic.entity.ArithmeticAttempt;
 
@@ -18,4 +20,8 @@ public interface ArithmeticService {
 	* multiplication, false otherwise.
 	*/
 	boolean checkAttempt(final ArithmeticAttempt attempt);
+
+	ArithmeticAttempt getArithmeticAttemptById(String id);
+
+	List<ArithmeticAttempt> getStatsForUser(String alias);
 }
