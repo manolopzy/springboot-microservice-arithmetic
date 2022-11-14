@@ -9,6 +9,12 @@ import org.springframework.data.redis.core.RedisHash;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
 import lombok.ToString;
+
+/**
+ * Esta clase representa la puntuacion asociada a cada prueba de un 
+ * usuario, cada vez el usuario prueba el juego, se genera y registra un tarjeta 
+ * de puntuacion ligado el tiempo que lo consigue.
+ */
 @Data
 @ToString
 @EqualsAndHashCode

@@ -2,12 +2,11 @@ package com.worldexplorer.arithmetic.entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.Getter;
+import lombok.Data;
+import lombok.NoArgsConstructor;
 import lombok.NonNull;
-import lombok.Setter;
-
-@Getter
-@Setter
+@NoArgsConstructor
+@Data
 @Document("arithmeticUsers")
 public final class User {
 	private String id;

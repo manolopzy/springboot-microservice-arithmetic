@@ -1,4 +1,4 @@
-package com.worldexplorer.arithmetic;
+package com.worldexplorer.arithmetic.config;
 
 import java.util.Collection;
 import java.util.Collections;

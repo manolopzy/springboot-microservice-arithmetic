@@ -10,10 +10,10 @@ import org.springframework.stereotype.Service;
 import com.worldexplorer.arithmeticgamification.client.ArithmeticResultAttemptClient;
 import com.worldexplorer.arithmeticgamification.client.dto.ArithmeticResultAttempt;
 import com.worldexplorer.arithmeticgamification.entity.Badge;
-import com.worldexplorer.arithmeticgamification.entity.BadgeCard;
 import com.worldexplorer.arithmeticgamification.entity.GameStats;
 import com.worldexplorer.arithmeticgamification.entity.LeaderBoardRow;
 import com.worldexplorer.arithmeticgamification.entity.ScoreCard;
+import com.worldexplorer.arithmeticgamification.repository.GameRepository;
 import com.worldexplorer.arithmeticgamification.repository.GamestatsRepository;
 
 import lombok.Data;
@@ -62,6 +62,7 @@ public class GameServiceImpl implements GameService{
             List<Badge> newBadges = processForNewBadges(attemptId, gameStats);
             gameStats.addNewBadges(newBadges);
             gameRepository.addNewBadges(userId, newBadges);
+            gameRepository.addLeaderBoard(userId, gameStats.getScore());
             return gamestatsRepository.save(gameStats);
         }
         return GameStats.emptyStats(userId);
@@ -114,12 +115,13 @@ public class GameServiceImpl implements GameService{
 
 	@Override
 	public List<LeaderBoardRow> getCurrentLeaderBoard() {
-		// TODO Auto-generated method stub
-		return null;
+		log.info("get leader board data");
+		return gameRepository.getLeaderBoards(6);
 	}
 	
 	@Override
 	public GameStats retrieveStatsForUser(String userId) {
+		log.info("retrieve user's game statistics data with user id {}", userId);
 		Optional<GameStats> result = gamestatsRepository.findById(userId);
 		return result.isEmpty() ? null : result.get();
 	}

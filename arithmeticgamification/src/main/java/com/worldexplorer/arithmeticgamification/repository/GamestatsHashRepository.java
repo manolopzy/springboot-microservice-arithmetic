@@ -1,4 +1,4 @@
-package com.worldexplorer.arithmeticgamification.service;
+package com.worldexplorer.arithmeticgamification.repository;
 
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.data.redis.connection.RedisConnection;

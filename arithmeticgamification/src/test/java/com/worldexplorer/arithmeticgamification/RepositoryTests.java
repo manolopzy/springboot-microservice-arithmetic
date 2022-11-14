@@ -33,8 +33,8 @@ import com.worldexplorer.arithmeticgamification.entity.Badge;
 import com.worldexplorer.arithmeticgamification.entity.BadgeCard;
 import com.worldexplorer.arithmeticgamification.entity.GameStats;
 import com.worldexplorer.arithmeticgamification.entity.ScoreCard;
+import com.worldexplorer.arithmeticgamification.repository.GameRepository;
 import com.worldexplorer.arithmeticgamification.repository.GamestatsRepository;
-import com.worldexplorer.arithmeticgamification.service.GameRepository;
 
 /**
  * Tests of the repositories

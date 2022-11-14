@@ -2,10 +2,7 @@ package com.worldexplorer.arithmetic.entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.Setter;
-import lombok.ToString;
+import lombok.Data;
 
 /**
  * var data = { user: { alias: userAlias }, multiplication: { factorA: a, factorB: b }, resultAttempt: attempt };
@@ -13,10 +10,7 @@ import lombok.ToString;
  *
  */
 @Document(collection = "arithmeticAttempts")
-@Getter
-@Setter
-@ToString
-@EqualsAndHashCode
+@Data
 public class ArithmeticAttempt {
 	private String id;
 	private User user;

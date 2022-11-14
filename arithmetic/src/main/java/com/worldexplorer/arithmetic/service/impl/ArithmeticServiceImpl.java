@@ -1,6 +1,5 @@
 package com.worldexplorer.arithmetic.service.impl;
 
-import java.util.List;
 import java.util.Optional;
 
 import org.springframework.beans.factory.annotation.Autowired;
@@ -8,6 +7,7 @@ import org.springframework.stereotype.Service;
 
 import com.worldexplorer.arithmetic.entity.Arithmetic;
 import com.worldexplorer.arithmetic.entity.ArithmeticAttempt;
+import com.worldexplorer.arithmetic.entity.QArithmeticAttempt;
 import com.worldexplorer.arithmetic.entity.User;
 import com.worldexplorer.arithmetic.event.ArithmeticSolvedEvent;
 import com.worldexplorer.arithmetic.event.EventDispatcher;
@@ -81,8 +81,9 @@ public class ArithmeticServiceImpl implements ArithmeticService {
 	}
 
 	@Override
-	public List<ArithmeticAttempt> getStatsForUser(String alias) {
-		// TODO Auto-generated method stub
-		return null;
+	public Iterable<ArithmeticAttempt> getArithmeticAttempts(String alias) {
+		QArithmeticAttempt qQuery = new QArithmeticAttempt("arithmeticAttempt");
+		Iterable<ArithmeticAttempt> result = arithmeticAttemptRepository.findAll(qQuery.user.alias.eq("manolopzy"));
+		return result;
 	}
 }

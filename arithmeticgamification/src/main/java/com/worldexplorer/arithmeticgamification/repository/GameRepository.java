@@ -1,5 +1,6 @@
-package com.worldexplorer.arithmeticgamification.service;
+package com.worldexplorer.arithmeticgamification.repository;
 
+import java.util.ArrayList;
 import java.util.HashSet;
 import java.util.List;
 import java.util.Set;
@@ -11,6 +12,7 @@ import org.springframework.stereotype.Component;
 
 import com.worldexplorer.arithmeticgamification.entity.Badge;
 import com.worldexplorer.arithmeticgamification.entity.BadgeCard;
+import com.worldexplorer.arithmeticgamification.entity.LeaderBoardRow;
 import com.worldexplorer.arithmeticgamification.entity.ScoreCard;
 
 import lombok.extern.slf4j.Slf4j;
@@ -21,6 +23,7 @@ public class GameRepository {
 
 	public static final String BADGE_CARD_ZSET_REDIS_KEY = "player_badge_cards";
 	public static final String SCORE_CARD_ZSET_REDIS_KEY = "player_score_cards";
+	public static final String LEADER_BOARD_ZSET_REDIS_KEY = "player_leader_boards";
 	@Autowired
 	private RedisTemplate<String, Object> jdkRedisTemplate;
 
@@ -76,6 +79,29 @@ public class GameRepository {
 			jdkRedisTemplate.opsForZSet().add(BADGE_CARD_ZSET_REDIS_KEY + userId, badgeCard, badgeCard.getBadgeTimestamp());
 		}
 		//==============================================
+	}
+
+	public void addLeaderBoard(String userId, int newScore) {
+		jdkRedisTemplate.opsForZSet().add(LEADER_BOARD_ZSET_REDIS_KEY, userId, newScore);
+	}
+
+	public List<LeaderBoardRow> getLeaderBoards(int numbers) {
+		
+		Set<TypedTuple<Object>> leaderBoards = jdkRedisTemplate.opsForZSet().reverseRangeWithScores(LEADER_BOARD_ZSET_REDIS_KEY, 0, numbers - 1);
+		//jdkRedisTemplate.opsForZSet().rangeWithScores(LEADER_BOARD_ZSET_REDIS_KEY, 0, numbers - 1);
+		log.info("leader boards infomation: " + leaderBoards);
+		if(leaderBoards == null || leaderBoards.size() == 0) {
+			return null;
+		}
+		List<LeaderBoardRow> leaderBoardRows = new ArrayList<>(leaderBoards.size());
+		for (TypedTuple<Object> typedTuple : leaderBoards) {
+			LeaderBoardRow row = new LeaderBoardRow();
+			row.setUserId((String)typedTuple.getValue());
+			row.setTotalScore(typedTuple.getScore().longValue());
+			log.info("leader boards infomation row: " + row.toString());
+			leaderBoardRows.add(row);
+		}
+		return leaderBoardRows;
 	}
 
 }

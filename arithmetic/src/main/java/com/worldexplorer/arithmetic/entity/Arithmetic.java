@@ -2,6 +2,7 @@ package com.worldexplorer.arithmetic.entity;
 
 import org.springframework.data.mongodb.core.mapping.Document;
 
+import lombok.Data;
 import lombok.Getter;
 import lombok.Setter;
 
@@ -21,8 +22,7 @@ import lombok.Setter;
  * @author tanku
  *
  */
-@Getter
-@Setter
+@Data
 @Document("arithmeticUsers")
 public final class Arithmetic {
 

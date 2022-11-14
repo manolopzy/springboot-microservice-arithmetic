@@ -1,4 +1,4 @@
-package com.worldexplorer.arithmetic;
+package com.worldexplorer.arithmetic.config;
 
 import org.springframework.amqp.core.TopicExchange;
 import org.springframework.amqp.rabbit.connection.ConnectionFactory;

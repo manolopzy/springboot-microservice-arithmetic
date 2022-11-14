@@ -1,7 +1,5 @@
 package com.worldexplorer.arithmetic.controller;
 
-import java.util.List;
-
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.GetMapping;
@@ -18,7 +16,13 @@ import com.worldexplorer.arithmetic.service.ArithmeticService;
 
 import lombok.Getter;
 import lombok.extern.slf4j.Slf4j;
+/**
+ * One can set up different levels of cross origin
+ * @author tanku
+ *
+ */
 @Slf4j
+//@CrossOrigin
 @RestController
 @RequestMapping("/arithmetic")
 public class ArithmeticController {
@@ -32,14 +36,15 @@ public class ArithmeticController {
 
 	//https://www.baeldung.com/spring-request-param
 	//http://localhost:8080/arithmetic/random?operator=1
+	//@CrossOrigin(origins = "http://localhost:9090")
 	@GetMapping("/random")
 	Arithmetic getRandomExpression(@RequestParam(name = "operator") String operator) {
-		log.info("arithmetic operator = " + operator);
+		log.info("request a random arithmetic expression = " + operator);
 		return arithmeticService.createRandomExpression(operator);
 	}
-
 	@PostMapping("/attempt")
 	ResponseEntity<ArithmeticAttempt> postResult(@RequestBody ArithmeticAttempt attempt) {
+		log.info("user attempt = " + attempt.toString());
 		boolean isCorrect = arithmeticService.checkAttempt(attempt);
         ArithmeticAttempt attemptCopy = new ArithmeticAttempt(
         		attempt.getUser(),
@@ -49,14 +54,12 @@ public class ArithmeticController {
         );
         return ResponseEntity.ok(attemptCopy);
 	}
-
     @GetMapping
-    ResponseEntity<List<ArithmeticAttempt>> getStatistics(@RequestParam("alias") String alias) {
+    ResponseEntity<Iterable<ArithmeticAttempt>> getStatistics(@RequestParam("alias") String alias) {
         return ResponseEntity.ok(
-        		arithmeticService.getStatsForUser(alias)
+        		arithmeticService.getArithmeticAttempts(alias)
         );
     }
-
     @GetMapping("/{id}")
     ResponseEntity<ArithmeticAttempt> getAttemptResultById(final @PathVariable("id") String id) {
     	log.info("ask information with attempt result id = " + id);

@@ -1,24 +1,17 @@
 package com.worldexplorer.arithmeticgamification.entity;
 
-import lombok.EqualsAndHashCode;
-import lombok.Getter;
-import lombok.RequiredArgsConstructor;
-import lombok.ToString;
+import lombok.Data;
 
 /**
  * Represents a line in our Leaderboard: it links a user to a total score.
  */
-@RequiredArgsConstructor
-@Getter
-@ToString
-@EqualsAndHashCode
-public final class LeaderBoardRow {
+@Data
+public class LeaderBoardRow {
 
-    private final Long userId;
-    private final Long totalScore;
+    private String userId;
+    private Long totalScore;
 
     // Empty constructor for JSON / JPA
     public LeaderBoardRow() {
-        this(0L, 0L);
     }
 }

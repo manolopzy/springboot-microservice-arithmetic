@@ -1,15 +1,13 @@
 package com.worldexplorer.arithmetic.service;
 
-import java.util.List;
-
 import com.worldexplorer.arithmetic.entity.Arithmetic;
 import com.worldexplorer.arithmetic.entity.ArithmeticAttempt;
 
 public interface ArithmeticService {
 
 	/**
-	 * Create a Multiplication object with two 
-	 * randomly generated factors between 10 and 99
+	 * Create an arithmetic expression object with 
+	 * specified operator 
 	 * @return
 	 */
 	Arithmetic createRandomExpression(String operator);
@@ -17,11 +15,19 @@ public interface ArithmeticService {
 	/**
 	 * this is the service deals with user's attempt requests
 	* @return true if the attempt matches the result of the
-	* multiplication, false otherwise.
+	* arithmetic expression, false otherwise.
 	*/
 	boolean checkAttempt(final ArithmeticAttempt attempt);
-
+	/**
+	 * get the arithmetic attempt data with its id
+	 * @param id
+	 * @return
+	 */
 	ArithmeticAttempt getArithmeticAttemptById(String id);
-
-	List<ArithmeticAttempt> getStatsForUser(String alias);
+	/**
+	 * Return a user's attempts by name
+	 * @param alias
+	 * @return
+	 */
+	Iterable<ArithmeticAttempt> getArithmeticAttempts(String alias);
 }
