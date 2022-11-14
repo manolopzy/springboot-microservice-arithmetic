@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <title>Arithmetic v1</title>
+    <link href="css/bootstrap.min.css" rel="stylesheet">
+    <!-- This includes the jquery javascript library to our hmtl -->
+    <script src="https://ajax.googleapis.com/ajax/libs/jquery/3.6.1/jquery.min.js"></script>
+    <!-- This includes our own js code -->
+    <script src="arithmetic-client.js"></script>
+    <script src="gamification-client.js"></script>
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+</head>
+
+<body>
+    <!-- The <div> tag defines a division or a section in 
+	an HTML document.
+	The <div> tag is used as a container for HTML elements 
+	which is then styled with CSS or manipulated with JavaScript. -->
+    <div class="container">
+        <div class="row">
+            <div class="col-md-12">
+                <h1 class="text-center">Welcome to Social Arithmetic</h1>
+            </div>
+        </div>
+        <div class="row">
+            <div class="col-md-6">
+                <h3 class="text-center">This is your challenge for today:</h3>
+                <h1 class="text-center">
+                    <!-- The <span> tag is an inline container used to mark up 
+                a part of a text, or a part of a document. -->
+                    <!-- span標簽是行内容器，用來標記文本内容的一部分，或者文檔的一部分 -->
+                    <!-- The <span> tag is easily styled by CSS or manipulated 
+                with js using the class or id attribute. -->
+                    <!-- la siguiente parte es para mostrar una expresion de aritmética -->
+
+                    <span class="arithmetic-a"></span>
+                    <select id="arithmetic">
+                        <option value="addition">+</option>
+                        <option value="subtraction">-</option>
+                        <option value="multiplication">×</option>
+                        <option value="division">÷</option>
+                    </select>
+                    <span class="arithmetic-b"></span>
+                </h1>
+                <!-- The <p> tag defines a paragraph. -->
+                <p>
+                    <!-- <br>: The Line Break element. The <br> element produces 
+				a line break in text, useful for writing a poem or an 
+				address, where the division of lines is significant. 
+				換行標簽-->
+                <form id="attempt-form">
+                    <div class="form-group">
+                        <label for="result-attempt">Result?</label>
+                        <input type="text" name="result-attempt" id="result-attempt" class="form-control">
+                    </div>
+                    <div class="form-group">
+                        <label for="user-alias">Your alias:</label>
+                        <input type="text" name="user-alias" id="user-alias" class="form-control">
+                    </div>
+                    <input type="submit" value="Check" class="btn btn-default">
+                </form>
+                </p>
+                <div class="result-message"></div>
+
+                <div id="stats-div" style="display: none;">
+                    <h2>Your statistics</h2>
+                    <table id="stats" class="table">
+                        <tbody>
+                            <tr>
+                                <td class="info">User ID:</td>
+                                <td id="stats-user-id"></td>
+                            </tr>
+                            <tr>
+                                <td class="info">Score:</td>
+                                <td id="stats-score"></td>
+                            </tr>
+                            <tr>
+                                <td class="info">Badges:</td>
+                                <td id="stats-badges"></td>
+                            </tr>
+                        </tbody>
+                    </table>
+                </div>
+
+            </div>
+            <div class="col-md-6">
+                <h3>Leaderboard</h3>
+                <table id="leaderboard" class="table">
+                    <tr>
+                        <th>User ID</th>
+                        <th>Score</th>
+                    </tr>
+                    <tbody id="leaderboard-body"></tbody>
+                </table>
+                <div class="text-right">
+                    <button id="refresh-leaderboard" class="btn btn-default" type="submit">Refresh</button>
+                </div>
+
+                <div id="results-div" style="display: none;">
+                    <h2>Your latest attempts</h2>
+                    <table id="results" class="table">
+                        <tr>
+                            <th>Attempt ID</th>
+                            <th>Arithmetic</th>
+                            <th>You entered</th>
+                            <th>Correct?</th>
+                        </tr>
+                        <tbody id="results-body"></tbody>
+                    </table>
+                </div>
+            </div>
+        </div>
+    </div>
+    <script src="js/bootstrap.min.js"></script>
+</body>
+
+</html>

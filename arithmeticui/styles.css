@@ -1,0 +1,18 @@
+@charset "utf-8";
+
+html, body {
+	height: 100%;
+}
+
+html {
+	display: table;
+	margin: auto;
+}
+
+body {
+	display: table-cell;
+	vertical-align: middle;
+}
+select, option {
+    font-size: 40px;
+}
